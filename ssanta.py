@@ -102,5 +102,5 @@ names_engine()
 
 # Test data and test
 # test_num = 6
-# test_names = ["Max","Hannah","Bridie","Ioan","Loredana","Ian"]
+# test_names = ["Max","Matthew","Mark","Luke","John","Mike"]
 # elf_engine(test_num,test_names)
