@@ -1,4 +1,5 @@
 # to do list
+# Right now theres a chance for an equal n of players > 3 that the last person might get themselves
 # ensure that all names are unique
 
 
@@ -6,13 +7,14 @@ import random
 
 # Where santas magic happens
 def elf_engine():
-    print("Welcome to secret santa selctor!")
+    print("Welcome to secret santa selector!")
     num_players = user_input("How many players?",[],"num")
     print("First enter the names one at a time and press enter:")
-    names = names_input(num_players)
-    new_order = list_generator(num_players,names)
-    print(new_order)
+    givers = names_input(num_players)
+    receivers = list_generator(num_players,givers)
+    assignments = create_dict(givers,receivers)
 
+    print(assignments)
 
 # Function to capture the player names
 def names_input(num_players):
@@ -27,7 +29,7 @@ def random_number(s,e):
 
 # Randomises who gets who
 def list_generator(num_players, names):
-    old_order = names
+    old_order = names.copy()
     # the new order of names
     new_order = []
     for i in range(num_players):
@@ -39,7 +41,7 @@ def list_generator(num_players, names):
         while True:
             if random_index != i:
                 # Adds the name to the new order list
-                new_order = new_order.append(old_order[random_index])
+                new_order.append(old_order[random_index])
                 # deletes the name from the old list so it isnt selected again
                 del (old_order[random_index])
                 break
@@ -49,6 +51,9 @@ def list_generator(num_players, names):
                 random_index = random_number(0,num_players - i)
     
     return new_order
+
+def create_dict(old_list,new_list):
+    return dict(zip(old_list, new_list)) 
 
 # Prompts for user input and checks its valid
 def user_input(msg,options,in_type):
