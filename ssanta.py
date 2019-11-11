@@ -1,3 +1,7 @@
+# to do list
+# ensure that all names are unique
+
+
 import random
 
 # Where santas magic happens
@@ -6,6 +10,8 @@ def elf_engine():
     num_players = user_input("How many players?",[],"num")
     print("First enter the names one at a time and press enter:")
     names = namesinput(num_players)
+    new_order = listgenerator(num_players,names)
+    print(new_order)
 
 
 # Function to capture the player names
@@ -15,16 +21,43 @@ def namesinput(num_players):
         names.append(user_input(f"Please enter name number {i}",[],"name"))
     return names
 
+def randomnumber(s,e):
+# put random number generator in here
+    random_number = random.randrange(s,e)
+    return random_nmber
+
 # Randomises who gets who
-def randomgenerator(num_players, names):
+def listgenerator(num_players, names):
     old_order = names
+    # the new order of names
+    new_order = []
     for i in range(0,num_players,1):
+
+        # ranimly selects a name to assign to the new order
+        random_index = randomnumber(0,num_players - {i})
+
+        # checks if the new name is the same as the name its going to be assigned to
+        samenames = 0
+        while True:
+            if random_index == i:
+                # Generates a new random number to try again
+                random_index = randomnumber(0,num_players - {i})
+
+            else:
+                new_order = new_order.append(old_order[random_index])
+                del (old_order[random_index]
+                break
+    
+    return new_order
+        
+
+
         # old_order_num = 
         # Need to give each old item an index
         # then randomise the list for the new items
         # making sure that each name does actually change
 
-    new_order = random.randrange(0,range + 1,1)
+    new_order = new_order.append(old_order[random.randrange(0,num_players + 1,1)]
 
     return comp_choice
 
