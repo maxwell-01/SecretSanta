@@ -12,6 +12,9 @@ def elf_engine():
     print("First enter the names one at a time and press enter:")
     givers = names_input(num_players)
     receivers = list_generator(num_players,givers)
+
+
+
     assignments = create_dict(givers,receivers)
 
     print(assignments)
@@ -28,8 +31,8 @@ def random_number(s,e):
     return random.randrange(s,e)
 
 # Randomises who gets who
-def list_generator(num_players, names):
-    old_order = names.copy()
+def list_generator(num_players, old_list):
+    old_order = old_list.copy()
     # the new order of names
     new_order = []
     for i in range(num_players):
@@ -49,8 +52,16 @@ def list_generator(num_players, names):
 
                 # Generates a new random number to try again
                 random_index = random_number(0,num_players - i)
-    
+    duplicate_checker(num_players,old_list,new_order)
     return new_order
+
+# Checks if the last person in the list has themselvs
+def duplicate_checker(num_players, old_list, new_list):
+    while True:
+        if old_list[num_players-1] == new_list[num_players-1]:
+            list_generator(num_players,old_list)
+        else:
+            return True
 
 def create_dict(old_list,new_list):
     return dict(zip(old_list, new_list)) 
