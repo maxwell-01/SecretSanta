@@ -6,17 +6,21 @@
 import random
 
 # Where santas magic happens
-def elf_engine():
+def names_engine():
     print("Welcome to secret santa selector!")
     num_players = user_input("How many players?",[],"num")
     print("First enter the names one at a time and press enter:")
     givers = names_input(num_players)
+    elf_engine(num_players, givers)
+    
+def elf_engine(num_players, givers):
     receivers = list_generator(num_players,givers)
-
-
+    
+    duplicate_checker(num_players,givers,receivers)
+    while duplicate_checker(num_players, givers, receivers):
+        receivers = list_generator(num_players,givers)
 
     assignments = create_dict(givers,receivers)
-
     print(assignments)
 
 # Function to capture the player names
@@ -52,16 +56,14 @@ def list_generator(num_players, old_list):
 
                 # Generates a new random number to try again
                 random_index = random_number(0,num_players - i)
-    duplicate_checker(num_players,old_list,new_order)
     return new_order
 
 # Checks if the last person in the list has themselvs
 def duplicate_checker(num_players, old_list, new_list):
-    while True:
-        if old_list[num_players-1] == new_list[num_players-1]:
-            list_generator(num_players,old_list)
-        else:
-            return True
+    if old_list[num_players-1] == new_list[num_players-1]:
+        return True
+    else:
+        return False
 
 def create_dict(old_list,new_list):
     return dict(zip(old_list, new_list)) 
@@ -96,4 +98,9 @@ def user_input(msg,options,in_type):
     else:
         print("Error in user_input")
 
-elf_engine()
+names_engine()
+
+# Test data and test
+# test_num = 6
+# test_names = ["Max","Hannah","Bridie","Ioan","Loredana","Ian"]
+# elf_engine(test_num,test_names)
