@@ -1,7 +1,7 @@
 import random
 
-# names = ["Max","Matthew","Mark","Luke","John","Mike"]
-names = ["Max", "Raefe", "Fred"]
+names = ["Max","Matthew","Mark","Luke","John","Mike"]
+# names = ["Max", "Raefe", "Fred"]
 
 # function to assign names, if a duplicate occurs, it restarts
 def list_generator(names):
