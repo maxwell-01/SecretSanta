@@ -3,6 +3,7 @@ import random
 # names = ["Max","Matthew","Mark","Luke","John","Mike"]
 names = ["Max", "Raefe", "Fred"]
 
+# function to assign names, if a duplicate occurs, it restarts
 def list_generator(names):
     last_name_the_same = True
     while last_name_the_same:
