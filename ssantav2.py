@@ -6,9 +6,8 @@ import random
 names = ["Max", "Raefe", "Fred"]
 
 def list_generator(names):
-  
-    print("Secret Santering...")
-    
+
+    # A while loop cycles through the name assignment and restarts if the last person is left with themselves
     last_name_the_same = True
     while last_name_the_same:
         # Makes a copy of the list so that we don't delete items from 'names'
@@ -17,18 +16,20 @@ def list_generator(names):
         num_players = len(names)
         # the new order of names
         new_order = []
-        
+        # Allows the loop to break if everything goes to plan
         last_name_the_same = False
+
+        # Iterates through the numer of people playing
         for i in range(num_players):
-            # creates a random index to pick an assignment
+
+            # creates a random index used pick an assignment name
             random_index = random.randrange(num_players - i)
 
-            # checks if the new name is the same as the name its going to be assigned to
+            # checks if the new name is the same as the assignment name
             if old_order[random_index] == names[i]:
 
-                # Checks if the last name can only pick itself, if true, restarts
+                # Checks if the last name can only pick itself, if true, restarts the loop
                 if i == num_players - 1:
-                    print("Last name tried to choose itself")
                     last_name_the_same = True
                     break
                 else:
@@ -38,10 +39,9 @@ def list_generator(names):
 
             # Adds the name to the new order list    
             new_order.append(old_order[random_index])
-            # deletes the name from the old list so it isnt selected again
-            print(f"{names[i]} : {old_order[random_index]}")
+            # deletes the name from the old list so it isn't selected again
             del (old_order[random_index])
-    
+    # creates a dictionary by combining the old order with the new order
     names_dict = dict(zip(names, new_order))
     return names_dict
 
