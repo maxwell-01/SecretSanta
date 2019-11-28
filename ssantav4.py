@@ -1,7 +1,7 @@
 import random
 
-names = ["Max","Matthew","Mark","Luke","John","Mike"]
-# names = ["Max", "Raefe", "Fred"]
+# names = ["Max","Matthew","Mark","Luke","John","Mike"]
+names = ["Max", "Raefe", "Fred"]
 
 # function to assign names, if a duplicate occurs, it restarts
 def list_generator(names):
@@ -12,21 +12,23 @@ def list_generator(names):
         random_index = random.randrange(num_players - i)
         new_order.append(old_order[random_index])
         del (old_order[random_index])
-    names_dict = dict(zip(names, new_order))
+    return new_order
+
+def dictionary_maker(list_1, list_2):
+    names_dict = dict(zip(list_1, list_2))
     return names_dict
 
-def detect_duplicates(input_dict):
-    for i in input_dict:
-        if input_dict[i] == i:
-            return 'True'
+def duplicate_detector(input_dict):
+    for name in input_dict:
+        if input_dict[name] == name:
+            return True
+    return False
 
 def secret_santa(names):
-    names_dict = list_generator(names)
-
-    while detect_duplicates(names_dict):
-        # print("duplicates detected...")
-        names_dict = list_generator(names)
-
+    while True:
+        names_dict = dictionary_maker(names,list_generator(names))
+        if not duplicate_detector(names_dict):
+            break
     return names_dict
 
-print(secret_santa(names))
+# print(secret_santa(names))
